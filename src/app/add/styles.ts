@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     container:{
         flex:1,
         padding:32,
-        backgroundColor: colors.gray[900]
+        backgroundColor: colors.gray[900],
     }, 
     header:{
         width:"100%",
@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 32
+
     }, 
     logo:{
         width: 32,
@@ -21,12 +22,6 @@ export const styles = StyleSheet.create({
     },
     content:{
         flex:1,
-        justifyContent: "center",
-        alignItems: "center",
         gap: 16,
     },
-    title:{
-        color: colors.gray[100],
-        fontSize:22,
-    }
 })

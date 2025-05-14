@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native"
+import { View, Text } from "react-native"
 import { router } from "expo-router"
 
 import { styles } from "./styles"
@@ -6,17 +6,22 @@ import { colors } from "@/styles/colors"
 
 import { Icon } from "@/components/icon"
 import { Button } from "@/components/button"
+import { Input } from "@/components/input"
+
 
 export default function Index() {
+
+
+
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <Image style={styles.logo} source={require("@/assents/logo.png")}/>
-                <Icon iconName="add" iconcolor={colors.green[100]} onPress={() => router.navigate("./add")}/>
+                <Icon iconName="arrow-back" iconcolor={colors.green[100]} onPress={() => router.back()}/>
             </View>
             <View style={styles.content}>
-                <Text style={styles.title}>There are no tasks yet...</Text>
-                <Button buttonName="Create New Task" onPress={() => router.navigate("./add")}/>
+                <Input/>
+                <Button buttonName="Create New Task"/>
             </View>
 
         </View>
