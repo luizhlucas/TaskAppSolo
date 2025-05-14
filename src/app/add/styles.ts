@@ -24,4 +24,8 @@ export const styles = StyleSheet.create({
         flex:1,
         gap: 16,
     },
+    title:{
+        color: colors.gray[100],
+        fontSize:22,
+    }
 })
