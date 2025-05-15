@@ -12,9 +12,13 @@ import { taskStorage } from "@/storage/task-Storage"
 
 
 export default function Index() {
-    const [task, setTask] = useState("")
+    const [name, setName] = useState("")
 
     async function handlepress(){
+        await taskStorage.save({
+            id: new Date().getTime().toString(),
+            name,
+        })
 
     }
 
@@ -24,7 +28,7 @@ export default function Index() {
                 <Icon iconName="arrow-back" iconcolor={colors.green[100]} onPress={() => router.back()}/>
             </View>
             <View style={styles.content}>
-                <Input onChangeText={setTask}/>
+                <Input onChangeText={setName}/>
                 <Button buttonName="Create New Task" onPress={handlepress}/>
             </View>
         </View>
