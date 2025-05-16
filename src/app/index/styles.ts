@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
     },
     content:{
         flex:1,
-        justifyContent: "center",
+        justifyContent: "flex-end",
         alignItems: "center",
         gap: 16,
     },
@@ -34,4 +34,51 @@ export const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: "600",
     },
+    task:{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 8,
+        backgroundColor: colors.green[200],
+        padding: 16, 
+        borderRadius: 10
+        
+    },
+    modal: {
+        flex: 1,
+        justifyContent: "flex-end"
+    },
+    modalContent : {
+        backgroundColor: colors.gray[800],
+        borderTopWidth: 1,
+        borderTopColor: colors.gray[700],
+        paddingBottom: 52,
+        padding: 24
+    },
+    modalHeader: {
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 32
+    },
+    modalCategory: {
+        flex: 1,
+        fontSize: 16,
+        fontWeight: "500",
+        color: colors.gray[300]
+    },
+    modalTaskName: {
+        fontSize: 18,
+        fontWeight: "600",
+        color: colors.gray[200]
+    },
+    modalFooter: {
+        flexDirection: "row",
+        marginTop: 32,
+        width: "100%",
+        justifyContent: "space-between",
+        borderTopWidth: 1,
+        borderTopColor: colors.gray[600],
+        paddingVertical: 14,
+      },
 })

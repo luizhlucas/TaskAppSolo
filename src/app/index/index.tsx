@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react"
-import { View, Text, Image, FlatList } from "react-native"
+import { View, Text, Image, FlatList, Modal } from "react-native"
 import { router, useFocusEffect } from "expo-router"
 import { TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -13,8 +13,8 @@ import { taskStorage, TaskStorage } from "@/storage/task-Storage"
 
 export default function Index() {
     const [tasks, setTasks] = useState<TaskStorage[]>([])
-
-    const task = taskStorage.get()
+    const [task, setTask] = useState<TaskStorage>({} as TaskStorage)
+    const [modalVisible, setModalVisible] = useState(false)
 
         async function getTasks() {
         try {
@@ -23,6 +23,11 @@ export default function Index() {
         }catch (error){
 
         }
+    }
+
+    function handleDetails(selected: TaskStorage) {
+        setModalVisible(true)
+        setTask(selected)
     }
 
     useFocusEffect(
@@ -35,25 +40,45 @@ export default function Index() {
         <View style={styles.container}>
             <View style={styles.header}>
                 <Image style={styles.logo} source={require("@/assents/logo.png")}/>
-                <Icon iconName="add" iconcolor={colors.green[100]} onPress={() => router.navigate("./add")}/>
+                <Icon iconName="add" iconColor={colors.green[100]} onPress={() => router.navigate("./add")}/>
             </View>
+
+            {tasks.length === 0 &&
             <View style={styles.content}>
                 <Text style={styles.title}>There are no tasks yet...</Text>
                 <Button buttonName="Create New Task" onPress={() => router.navigate("./add")}/>
-                <TouchableOpacity  activeOpacity={0.6} onPress={() => console.log(task)}>
-                    <MaterialIcons name="add" size={32} color={colors.gray[100]}/>
-                </TouchableOpacity>
             </View>
+            }
+
             <FlatList
             data={tasks}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-                    <View>
+                    <View style={styles.task}>
                         <Text style={styles.name}>{item.name}</Text>
+                        <Icon iconName="more-horiz" iconColor={colors.gray[100]} onPress={() => handleDetails(item)}/>
                     </View>
                 )}
-
             />
+                <Modal transparent visible={modalVisible}>
+                        <View style={styles.modal}>
+                            <View style={styles.modalContent}>
+                                <View style={styles.modalHeader}>
+                                    <Text style={styles.modalCategory}>Task</Text>
+                                    <Icon iconName="close" iconColor={colors.gray[100]} onPress={() => setModalVisible(false)}/>
+                                </View>
+
+                                <Text style={styles.modalTaskName}>{task.name}</Text>
+
+                                <View style={styles.modalFooter}>
+                                    <Icon iconName="delete" iconColor={colors.gray[100]} />
+
+                                </View>
+
+                            </View>
+                        </View>
+                </Modal>
+
         </View>
     )
 }
