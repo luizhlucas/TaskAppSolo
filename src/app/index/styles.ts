@@ -28,5 +28,10 @@ export const styles = StyleSheet.create({
     title:{
         color: colors.gray[100],
         fontSize:22,
-    }
+    },
+        name: {
+        color: colors.gray[100],
+        fontSize: 18,
+        fontWeight: "600",
+    },
 })
