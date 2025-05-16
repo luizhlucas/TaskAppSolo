@@ -1,8 +1,6 @@
 import { useState, useCallback } from "react"
 import { View, Text, Image, FlatList, Modal } from "react-native"
 import { router, useFocusEffect } from "expo-router"
-import { TouchableOpacity } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
 
 import { styles } from "./styles"
 import { colors } from "@/styles/colors"
@@ -28,6 +26,12 @@ export default function Index() {
     function handleDetails(selected: TaskStorage) {
         setModalVisible(true)
         setTask(selected)
+    }
+
+    async function taskRemove(){
+        await taskStorage.remove(task.id)
+        getTasks()
+        setModalVisible(false)
     }
 
     useFocusEffect(
@@ -71,7 +75,7 @@ export default function Index() {
                                 <Text style={styles.modalTaskName}>{task.name}</Text>
 
                                 <View style={styles.modalFooter}>
-                                    <Icon iconName="delete" iconColor={colors.gray[100]} />
+                                    <Icon iconName="delete" iconColor={colors.gray[100]} onPress={taskRemove}/>
 
                                 </View>
 

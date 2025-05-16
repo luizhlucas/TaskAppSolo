@@ -20,5 +20,12 @@ async function save(Newtask: TaskStorage){
 
     return await AsyncStorage.setItem(TASK_STORAGE_key, update)
 }
+async function remove(id: string){
+    const storage = await get()
+    const updated = storage.filter((task) => task.id !== id)
+    const update = JSON.stringify(updated)
 
-export const taskStorage = { get, save } 
+    return await AsyncStorage.setItem(TASK_STORAGE_key, update)
+}
+
+export const taskStorage = { get, save, remove } 
